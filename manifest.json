@@ -1,0 +1,64 @@
+{
+  "id": "/?source=pwa",
+  "name": "rockykln · Have fun and be yourself",
+  "short_name": "rockykln",
+  "description": "Pixel-art portfolio of rockykln. Three quests: key64, clientctl, refrain.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1597F9",
+  "theme_color": "#1597F9",
+  "categories": ["personal", "developer", "portfolio"],
+  "icons": [
+    {
+      "src": "/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quests (projects)",
+      "short_name": "Quests",
+      "url": "/#quests",
+      "description": "Jump to the project list"
+    },
+    {
+      "name": "Talk",
+      "short_name": "Talk",
+      "url": "/#talk",
+      "description": "Open the contact dialog"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/banner-og.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "rockykln · Have fun and be yourself — pixel-art landscape"
+    }
+  ]
+}

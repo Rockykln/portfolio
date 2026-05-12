@@ -1,0 +1,1788 @@
+/* ============================================================
+   rockykln · portfolio
+   Aesthetic: pixel-art platformer · indie game title screen
+   Have fun and be yourself.
+   ============================================================ */
+
+/* ── Variables ──────────────────────────────────────────────── */
+
+:root {
+  /* ── Sky (anchored on real banner #1597F9) ────────────────── */
+  --sky-light:    #28A1FC;   /* hsl 206 97 58 — upper sky */
+  --sky:          #1597F9;   /* hsl 206 95 53 — main sky */
+  --sky-mid:      #0E84DD;   /* hsl 206 88 46 — depth band */
+  --sky-deep:     #0A66B5;   /* hsl 206 89 38 — horizon */
+  --sky-ink:      #033B6F;   /* hsl 209 92 22 — text on sky */
+
+  --cloud:        #FFFFFF;
+  --cloud-edge:   #F0F9FF;
+  --cloud-shade:  #C7E3FB;
+
+  /* ── Grass (#98D657 lime + #56BB43 mid) ───────────────────── */
+  --grass-light:  #B0E067;   /* hsl 84 67 64 — sun-kissed top */
+  --grass:        #8FCB44;   /* hsl 86 56 53 — main blade */
+  --grass-mid:    #6FBE38;   /* hsl 92 56 48 — body */
+  --grass-deep:   #4A9926;   /* hsl 99 60 38 — shadow */
+  --grass-shadow: #2D6418;   /* hsl 105 62 25 — root */
+
+  /* ── Earth (#C1925A warm tan + #855332 deep) ──────────────── */
+  --earth-light:  #DAB084;   /* hsl 30 51 69 — highlight */
+  --earth:        #C1925A;   /* hsl 33 45 55 — main wood/dirt */
+  --earth-deep:   #855332;   /* hsl 24 45 36 — shadow */
+  --earth-dark:   #4A2D1A;   /* hsl 22 47 20 — deepest */
+
+  /* ── Red accent — triadic with sky-blue (~210°) and grass-green (~86°)
+        at ~350°. Analogous to the orange penguin beak so the avatar fits
+        the palette instead of clashing with it. Pixel-art classic. ──── */
+  --red-glow:   #FFD8DC;   /* hsl 354 100 92 — highlight / shine */
+  --red-light:  #FF6E80;   /* hsl 353 100 71 — hover state */
+  --red:        #E63946;   /* hsl 355 78 56 — MAIN accent */
+  --red-deep:   #B81E2C;   /* hsl 355 72 42 — pressed */
+  --red-shadow: #7A0F1A;   /* hsl 354 78 27 — deepest */
+
+  /* Legacy aliases — orange/gold/berry consumers all flow to red. */
+  --orange-light: var(--red-light);
+  --orange:       var(--red);
+  --orange-deep:  var(--red-deep);
+  --gold-glow:    var(--red-glow);
+  --gold:         var(--red-light);
+  --gold-deep:    var(--red-deep);
+  --berry-glow:   var(--red-glow);
+  --berry-light:  var(--red-light);
+  --berry:        var(--red);
+  --berry-deep:   var(--red-deep);
+  --berry-shadow: var(--red-shadow);
+
+  /* ── Ink + paper (slight blue tint for cohesion) ──────────── */
+  --ink:          #161A28;   /* hsl 224 28 12 — body text */
+  --ink-soft:     #3A4258;   /* hsl 222 20 29 — secondary */
+  --ink-faint:    #6B7488;   /* hsl 220 12 47 — muted */
+  --snow:         #FAFCFF;   /* hsl 220 100 99 — pure-white where needed */
+  --paper:        #FFF6E0;   /* hsl 44 100 94 — warm cream alt */
+  --paper-edge:   #F4E9C8;   /* hsl 45 65 87 — paper border */
+
+  /* Neutral gray stack — truly neutral (no blue tint) so the cards
+     read as flat gray, not "blue-ish white". */
+  --gray-50:      #EFEFF1;   /* lightest — primary section bg */
+  --gray-100:     #E2E2E5;   /* alt section */
+  --gray-200:     #C7C7CC;   /* heading-shadow edge */
+  --gray-300:     #8E8E94;   /* heading-shadow first step */
+
+  /* footer/floor color — used by overscroll gradient so the area below
+     the footer matches its bg (no harsh color cut on bottom-pull) */
+  --floor:        #161A28;
+
+  /* ── Pixel shadows ────────────────────────────────────────── */
+  --shadow-pixel:    4px 4px 0 0 var(--ink);
+  --shadow-pixel-sm: 2px 2px 0 0 var(--ink);
+  --shadow-pixel-lg: 6px 6px 0 0 var(--ink);
+
+  --max-w: 1100px;
+
+  /* ground strip height — also drives hero min-height via calc()
+     so the dirt edge always lands exactly at the viewport bottom */
+  --ground-h: 92px;
+
+  /* Headline shadow stack — monochrome gray ramp.
+     gray-300 (mid-gray step) → ink (silhouette) → gray-200 (soft edge).
+     No blue anywhere, no white halo behind the H1. */
+  --title-warm:  var(--gray-300);
+  --title-depth: var(--ink);
+  --title-edge:  var(--gray-200);
+
+  --accent-text:    var(--ink);
+  --accent-shadow1: var(--gray-300);
+  --accent-shadow2: var(--gray-200);
+
+  --display: 'Press Start 2P', ui-monospace, SFMono-Regular, monospace;
+  --body:    'Outfit', system-ui, -apple-system, sans-serif;
+  --mono:    'VT323', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Dark mode (twilight, cobalt-anchored) ──────────────────── */
+
+:root[data-theme="dark"] {
+  /* night sky — coherent cobalt → midnight */
+  --sky-light:    #1F3270;   /* hsl 222 56 28 — twilight band */
+  --sky:          #0F1E4A;   /* hsl 224 65 18 — midnight */
+  --sky-mid:      #091537;   /* hsl 224 73 12 — depth */
+  --sky-deep:     #050D26;   /* hsl 224 75  8 — near horizon */
+  --sky-ink:      #C8D4F2;   /* hsl 222 70 87 — text on sky */
+
+  --cloud:        #283A6E;   /* night cloud (was sky-ish) */
+  --cloud-edge:   #3A4D85;
+  --cloud-shade:  #1C2C56;
+
+  /* moonlit grass — desaturated, hue shifted slightly toward teal so it
+     doesn't clash with the cool cobalt sky (was pure lime → felt off) */
+  --grass-light:  #3E7A2A;   /* hsl 105 49 32 — moonlit lime */
+  --grass:        #2A5618;   /* hsl 105 56 22 */
+  --grass-mid:    #1F4212;   /* hsl 105 56 17 */
+  --grass-deep:   #11280A;   /* hsl 105 60 10 */
+  --grass-shadow: #081B05;
+
+  /* earth cooled toward gray-brown so warm tans don't fight cool sky */
+  --earth-light:  #6A4A30;   /* was #6E4C2C — slightly cooler */
+  --earth:        #463221;   /* was #4D341F — desaturated */
+  --earth-deep:   #281C12;   /* was #2E1F11 */
+  --earth-dark:   #14100B;   /* was #16100A */
+
+  /* Red kept as the same Imperial Red as light mode — no brightening
+     up. The "View Quests" red is the brand red; dark mode uses it too
+     for consistency. Lighter variants pulled slightly closer to MAIN. */
+  --red-glow:   #F8B5BC;
+  --red-light:  #E26A78;
+  --red:        #E63946;   /* MAIN — same as light, Imperial Red */
+  --red-deep:   #B81E2C;
+  --red-shadow: #7A0F1A;
+
+  /* Legacy aliases — all warm-name consumers flow to red in dark too. */
+  --orange-light: var(--red-light);
+  --orange:       var(--red);
+  --orange-deep:  var(--red-deep);
+  --gold-glow:    var(--red-glow);
+  --gold:         var(--red-light);
+  --gold-deep:    var(--red-deep);
+  --berry-glow:   var(--red-glow);
+  --berry-light:  var(--red-light);
+  --berry:        var(--red);
+  --berry-deep:   var(--red-deep);
+  --berry-shadow: var(--red-shadow);
+
+  /* paper inverts — snow now subtly cobalt-tinted to harmonize with sky */
+  --ink:          #E8EDF7;   /* softened from #F2F5FB — still AAA on snow */
+  --ink-soft:     #ADB5C8;
+  --ink-faint:    #7E8AA0;
+  --snow:         #131A2D;
+  --paper:        #1B2238;
+  --paper-edge:   #2A334D;
+
+  /* dark-mode neutrals — truly gray (not cobalt-tinted) so cards read
+     as gray panels at night instead of "more blue". */
+  --gray-50:      #2A2C33;   /* card surface */
+  --gray-100:     #34363E;   /* alt section */
+  --gray-200:     #4A4D55;   /* shadow edge */
+  --gray-300:     #7A7E88;   /* shadow first step */
+
+  /* dark-mode floor matches the dark footer override (#050D26) */
+  --floor:        #050D26;
+
+  --shadow-pixel:    4px 4px 0 0 #050D26;
+  --shadow-pixel-sm: 2px 2px 0 0 #050D26;
+  --shadow-pixel-lg: 6px 6px 0 0 #050D26;
+
+  /* Dark mode: same monochrome ramp — gray steps + dark depth. The
+     light --ink (=text color in dark) provides the bright edge halo. */
+  --title-warm:  var(--gray-300);
+  --title-depth: var(--floor);
+  --title-edge:  var(--ink);
+
+  --accent-text:    var(--ink);
+  --accent-shadow1: var(--gray-300);
+  --accent-shadow2: var(--floor);
+}
+
+/* enable smooth (well, stepped) theme transition */
+:root {
+  --theme-tx: background 0.2s steps(2), color 0.2s steps(2), border-color 0.2s steps(2);
+}
+
+/* ── Skip link (accessibility) ──────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 999;
+  display: inline-block;
+  padding: 8px 14px;
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  background: var(--orange);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel-sm);
+  transform: translateY(-150%);
+  transition: transform 0.15s steps(2);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+/* ── Focus rings (pixel orange) ─────────────────────────────── */
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.pix-btn:focus-visible,
+.quest-link:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+}
+
+.hero-penguin:focus-visible {
+  outline: 3px dashed var(--orange);
+  outline-offset: 6px;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+
+html {
+  /* Canvas color — irrelevant during normal scroll because every element
+     paints its own bg, only matters as a fallback. Sky here for safety. */
+  background-color: var(--sky);
+  /* `none` disables the iOS rubber-band entirely — no more bottom flash
+     where the page bounces past the footer and briefly reveals the
+     canvas (was the "Blitzer"). Page just stops cleanly at both edges. */
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  /* Prevents iOS Safari from inflating font sizes on landscape rotation.
+     Firefox doesn't honor `text-size-adjust` at all (Mozilla bug 1693305),
+     so we ship only the WebKit prefix and `-ms-` for Edge legacy. */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* `hidden` (not `clip`) — broader iOS Safari support, kills the
+     stray horizontal scroll caused by clouds/birds animating to 115vw. */
+  overflow-x: hidden;
+  /* iOS: disable 300 ms double-tap-zoom delay globally.
+     `manipulation` keeps pinch-zoom enabled (accessibility) but stops
+     the double-tap-to-zoom that fires when you tap an icon twice fast. */
+  touch-action: manipulation;
+  /* keep pixel-art crisp */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* universal — kills iOS double-tap-zoom on EVERY element, not just the
+     few we listed. `manipulation` keeps pinch-zoom + pan working
+     (accessibility). Previous selective approach left gaps. */
+  touch-action: manipulation;
+}
+
+/* iOS "smart zoom" on double-tap zooms to fit the tapped text block, even
+   with touch-action: manipulation in some Safari builds. Disabling user
+   selection on the chunky pixel-display elements (tagline, headlines,
+   stat pills) makes Safari treat them as non-text → no smart zoom. Body
+   copy keeps selection so users can still copy/paste. */
+.hero-tagline,
+.hero-title,
+.section-label,
+.section-title,
+.quest-level,
+.quest-status,
+.errpage-pill,
+.errpage-code,
+.footer-brand,
+.footer-meta,
+.pix-btn {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: var(--body);
+  /* Transparent — let html sky canvas show through. Sections/hero paint
+     their own bg explicitly. The visual "below footer" area is handled
+     by `body::after` (see below) which adds a tall floor block beyond
+     the footer so the dark zone extends through any overscroll bounce. */
+  background: transparent;
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100dvh;
+  /* `hidden` for broader iOS Safari support — same intent. */
+  overflow-x: hidden;
+  /* belt-and-suspenders: even if a child element forgets its own
+     touch-action rule, taps here won't trigger the 300 ms zoom delay. */
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  touch-action: manipulation;
+}
+
+/* iOS: kill 300 ms double-tap-zoom delay on every tappable element.
+   `manipulation` keeps pinch-zoom enabled (accessibility) but disables
+   double-tap zoom — which is what causes laggy/zoomy taps on Safari. */
+button,
+[role="button"],
+.hero-penguin,
+.theme-toggle,
+.pix-btn,
+.quest-link,
+.nav-link {
+  touch-action: manipulation;
+}
+
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--orange); color: var(--ink); }
+
+/* ── Animations ─────────────────────────────────────────────── */
+
+@keyframes idle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(-15vw); }
+  to   { transform: translateX(115vw); }
+}
+
+@keyframes bird-fly {
+  0%   { transform: translate(-15vw, 0) scaleY(1); }
+  20%  { transform: translate(20vw, -10px) scaleY(0.9); }
+  40%  { transform: translate(50vw, 8px)  scaleY(1); }
+  60%  { transform: translate(78vw, -6px) scaleY(0.92); }
+  80%  { transform: translate(105vw, 4px) scaleY(1); }
+  100% { transform: translate(115vw, 0)   scaleY(1); }
+}
+
+@keyframes wing-flap {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.6); }
+}
+
+@keyframes pop-in {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.92); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes star-blink {
+  0%, 60%, 100% { opacity: 1; }
+  30%, 90%      { opacity: 0.3; }
+}
+
+@keyframes sun-pulse {
+  0%, 100% { transform: translateY(0)    scale(1);    filter: drop-shadow(0 0 0 rgba(255,213,84,0.0)); }
+  50%      { transform: translateY(-4px) scale(1.04); filter: drop-shadow(0 0 12px rgba(255,213,84,0.55)); }
+}
+
+@keyframes sun-rays {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.08); }
+}
+
+@keyframes grass-sway {
+  0%, 100% { background-position: 0       0, 0       0, 0       0; }
+  50%      { background-position: 4px     0, -4px    0, 2px     0; }
+}
+
+@keyframes ach-wobble {
+  0%, 100% { transform: rotate(0deg)  translateY(0); }
+  25%      { transform: rotate(-4deg) translateY(-2px); }
+  50%      { transform: rotate(0deg)  translateY(-4px); }
+  75%      { transform: rotate(4deg)  translateY(-2px); }
+}
+
+@keyframes chest-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-1px); }
+  20%, 40%, 60%, 80%      { transform: translateX(1px); }
+}
+
+/* ── Cloud layer ────────────────────────────────────────────── */
+/* Wrapper for the drifting cloud ::before / ::after pseudo-elements.
+   Sits *above* hero/section content (z-index 2, pointer-events: none)
+   so clouds drift across the foreground without blocking taps. */
+
+.sky-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* drifting clouds — composed silhouette via stacked radial-gradients:
+   one wide base ellipse + three bumps on top. Same look as the .cloud
+   divs, but achievable inside a single pseudo (no pseudo-of-pseudo). */
+.sky-layer::before,
+.sky-layer::after {
+  content: "";
+  position: absolute;
+  width: 100px; height: 38px;
+  background:
+    radial-gradient(circle 15px at 22% 38%,  var(--cloud) 99%, transparent 100%),
+    radial-gradient(circle 19px at 50% 30%,  var(--cloud) 99%, transparent 100%),
+    radial-gradient(circle 14px at 76% 40%,  var(--cloud) 99%, transparent 100%),
+    radial-gradient(ellipse 48px 12px at 50% 78%, var(--cloud) 99%, transparent 100%);
+  background-repeat: no-repeat;
+  filter:
+    drop-shadow(2px 2px 0 var(--cloud-shade));
+  opacity: 0.95;
+  animation: cloud-drift 80s linear infinite;
+}
+.sky-layer::before { top: 12%; animation-duration: 90s;  animation-delay: -22s; }
+.sky-layer::after  { top: 28%; animation-duration: 110s; animation-delay: -65s; transform: scale(1.4); }
+
+/* extra clouds */
+.cloud {
+  position: absolute;
+  z-index: 2;
+  width: 80px;
+  height: 22px;
+  background: var(--cloud);
+  border-radius: 12px;          /* rounded base */
+  filter: drop-shadow(2px 2px 0 var(--cloud-shade));
+  pointer-events: none;
+  animation: cloud-drift 100s linear infinite;
+}
+
+/* two fluffy bumps on top of the rounded base — real-cloud silhouette */
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: var(--cloud);
+  border-radius: 50%;
+}
+.cloud::before { width: 30px; height: 30px; top: -16px; left: 14px; }
+.cloud::after  { width: 22px; height: 22px; top: -11px; left: 44px; }
+/* All clouds start below the fixed nav (calc(95px + safe-area)) and
+   stay in the upper third of the hero so they don't crowd the penguin. */
+.cloud.c1 { top: calc(95px + env(safe-area-inset-top));        animation-duration: 95s;  animation-delay: -10s; transform: scale(1.1); }
+.cloud.c2 { top: calc(95px + env(safe-area-inset-top) + 60px); animation-duration: 130s; animation-delay: -80s; transform: scale(0.85); }
+.cloud.c3 { top: calc(95px + env(safe-area-inset-top) + 130px); animation-duration: 150s; animation-delay: -45s; transform: scale(1.3); }
+.cloud.c4 { top: calc(95px + env(safe-area-inset-top) + 200px); animation-duration: 120s; animation-delay: -100s; transform: scale(0.7); }
+
+/* tiny pixel stars — day = hidden, dark-mode rule expands and reveals them */
+.starfield {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 30vh;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  animation: star-blink 4s ease-in-out infinite;
+}
+
+/* bird family flying across hero */
+.bird {
+  position: absolute;
+  width: 14px; height: 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bird::before {
+  content: "";
+  display: block;
+  width: 14px; height: 8px;
+  background:
+    linear-gradient(135deg, transparent 50%, #3D3D8C 50%) 0 0 / 7px 8px no-repeat,
+    linear-gradient(225deg, transparent 50%, #3D3D8C 50%) 7px 0 / 7px 8px no-repeat;
+  animation: wing-flap 0.4s ease-in-out infinite;
+}
+.bird.b1 { top: 12%; animation: bird-fly 32s linear infinite; animation-delay: -5s; }
+.bird.b2 { top: 22%; animation: bird-fly 42s linear infinite; animation-delay: -25s; transform: scale(0.7); }
+
+/* ── Pixel button helper ────────────────────────────────────── */
+
+.pix-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--orange);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow:
+    inset 0 -3px 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 rgba(255,255,255,0.25),
+    var(--shadow-pixel);
+  cursor: pointer;
+  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2), background 0.08s steps(2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pix-btn:hover {
+  transform: translate(-2px, -2px);
+  background: var(--orange-light);
+  box-shadow:
+    inset 0 -3px 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 rgba(255,255,255,0.30),
+    6px 6px 0 0 var(--ink);
+}
+
+.pix-btn:active {
+  transform: translate(2px, 2px);
+  background: var(--orange-deep);
+  box-shadow:
+    inset 0 -3px 0 rgba(0,0,0,0.20),
+    inset 0 3px 0 rgba(255,255,255,0.10),
+    0 0 0 0 var(--ink);
+}
+
+.pix-btn--ghost {
+  background: var(--snow);
+  color: var(--ink);
+}
+
+.pix-btn--ghost:hover { background: var(--paper); }
+.pix-btn--ghost:active { background: var(--paper-edge); }
+
+.pix-btn--sky {
+  background: var(--sky);
+  color: var(--ink);                 /* AA 5.63:1 — refined */
+}
+
+.pix-btn--sky:hover  { background: var(--sky-light); color: var(--ink); }
+.pix-btn--sky:active { background: var(--sky-deep); color: var(--snow); }
+
+.pix-btn svg { flex-shrink: 0; }
+
+/* ── Navigation ─────────────────────────────────────────────── */
+
+.nav {
+  position: fixed;
+  top: 12px;
+  inset-inline: 12px;
+  z-index: 100;
+  background: var(--snow);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel);
+  padding: env(safe-area-inset-top) 0 0;
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 18px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: 12px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+  min-height: 40px;
+}
+
+.nav-avatar {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  border: 2px solid var(--ink);
+  border-radius: 4px;     /* lightly rounded, keeps pixel-art feel */
+  background: var(--sky-light);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  /* prevent selection + the iOS long-press "Save Image" popup so rapid
+     taps don't trigger system UI that would expose the underlying
+     interaction. Also kills the gray tap-highlight on Android. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-family: var(--display);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ink-soft);
+  transition: color 0.1s steps(2), background 0.1s steps(2);
+  min-height: 36px;
+}
+
+.nav-link:hover { color: var(--ink); background: var(--paper); }
+
+.nav-link.is-cta {
+  background: var(--ink);
+  color: var(--snow);
+  padding: 8px 14px;
+  margin-left: 6px;
+  border: 2px solid var(--ink);
+}
+
+.nav-link.is-cta:hover { background: var(--orange); color: var(--ink); border-color: var(--ink); }
+
+:root[data-theme="dark"] .nav-link.is-cta {
+  background: var(--orange);
+  color: var(--ink);
+  border-color: var(--snow);
+}
+
+:root[data-theme="dark"] .nav-link.is-cta:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: calc(100dvh - var(--ground-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* top: room for tagline below nav. bottom: room for the penguin scene
+     (now a sibling of hero-stage, absolutely positioned at hero's bottom). */
+  padding: calc(180px + env(safe-area-inset-top)) 24px 170px;
+  overflow: hidden;
+  /* Sky gradient lives DIRECTLY on the hero — no propagation through
+     transparent body, no `background-attachment: fixed` (broken on iOS
+     Safari + flaky on Android Chrome). What the hero says is what shows. */
+  background-color: var(--sky);
+  background-image: linear-gradient(180deg,
+    var(--sky-light) 0%,
+    var(--sky)       60%,
+    var(--sky-deep)  100%);
+}
+
+.hero-stage {
+  position: relative;
+  z-index: 3;     /* above the atmospheric layer (clouds, sun) at z 2 */
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  /* scene is now a sibling, not a child — no internal padding reservation
+     needed. Space for the penguin scene comes from hero's padding-bottom. */
+}
+
+.hero-tagline {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink);
+  /* neutral gray pill — keeps the page calm so the red accent below
+     (the "kln" shadow) gets to be the single warm pop in the hero */
+  background: var(--gray-50);
+  border: 3px solid var(--ink);
+  padding: 8px 14px;
+  box-shadow: var(--shadow-pixel-sm);
+  transform: rotate(-2deg);
+  animation: pop-in 0.6s steps(6) 0.1s both;
+}
+
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 7vw, 64px);
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--ink);
+  margin-top: 28px;
+  text-shadow:
+    3px 3px 0 var(--title-warm),
+    6px 6px 0 var(--title-depth),
+    9px 9px 0 var(--title-edge);
+  animation: pop-in 0.7s steps(6) 0.25s both;
+}
+
+.hero-title .accent {
+  color: var(--accent-text);
+  /* inherit the full 3-step shadow from .hero-title so the gray edge
+     wraps all the way around "rockykln", not just the "rocky" half */
+  text-shadow: inherit;
+}
+
+.hero-sub {
+  max-width: 580px;
+  margin: 32px auto 0;
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  font-weight: 400;
+  animation: pop-in 0.7s steps(6) 0.4s both;
+}
+
+.hero-sub b { color: var(--ink); font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  animation: pop-in 0.7s steps(6) 0.55s both;
+}
+
+/* the penguin scene at the bottom of hero */
+.hero-scene {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 170px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;     /* same level as hero-stage so penguin sits on grass cleanly */
+}
+
+.hero-penguin {
+  width: 112px;
+  height: 112px;
+  position: relative;
+  z-index: 3;
+  border-radius: 6px;
+  animation: idle-bounce 2.4s steps(2) infinite;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.18));
+  pointer-events: auto;
+}
+
+/* ── Grass ground strip ─────────────────────────────────────── */
+
+.ground {
+  position: relative;
+  width: 100%;
+  height: var(--ground-h);
+  background:
+    linear-gradient(180deg, var(--grass-light) 0 12px, transparent 12px),
+    linear-gradient(180deg, var(--grass)       0 24px, transparent 24px),
+    linear-gradient(180deg, var(--grass-mid)   0 32px, transparent 32px),
+    linear-gradient(180deg, var(--grass-deep)  0 38px, transparent 38px),
+    linear-gradient(180deg, var(--earth) 38px, var(--earth-deep) 76px, var(--earth-dark) 100%);
+  border-top: 3px solid var(--grass-shadow);
+  z-index: 1;
+}
+
+/* pixel grass blades — subtle wind sway via background-position shift */
+.ground::before {
+  content: "";
+  position: absolute;
+  top: -7px; left: 0; right: 0;
+  height: 9px;
+  background-image:
+    linear-gradient(90deg, var(--grass-light) 4px, transparent 4px),
+    linear-gradient(90deg, transparent 6px, var(--grass-mid) 6px, var(--grass-mid) 10px, transparent 10px),
+    linear-gradient(90deg, transparent 14px, var(--grass-deep) 14px, var(--grass-deep) 16px, transparent 16px);
+  background-size: 16px 9px, 24px 9px, 28px 9px;
+  background-repeat: repeat-x;
+  animation: grass-sway 5s ease-in-out infinite;
+}
+
+/* pebbles + texture in dirt */
+.ground::after {
+  content: "";
+  position: absolute;
+  bottom: 8px; left: 0; right: 0;
+  height: 14px;
+  background-image:
+    radial-gradient(circle, var(--earth-dark) 1.5px, transparent 2px),
+    radial-gradient(circle, var(--earth-light) 1px, transparent 1.5px);
+  background-size: 32px 7px, 48px 14px;
+  background-position: 0 0, 16px 7px;
+}
+
+/* ── Sections (shared) ──────────────────────────────────────── */
+
+.section {
+  position: relative;
+  background: var(--gray-50);     /* light gray — softer than pure white */
+  padding: 72px 24px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+
+.section--paper { background: var(--gray-100); }   /* slightly deeper neutral */
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.section-head--tight { margin-bottom: 28px; }
+
+.section-label {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--snow);
+  background: var(--ink);
+  padding: 5px 9px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-pixel-sm);
+  border: 2px solid var(--ink);
+}
+
+:root[data-theme="dark"] .section-label {
+  color: var(--ink);
+  background: var(--gold);
+  border-color: var(--snow);
+}
+
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(20px, 3.5vw, 30px);
+  line-height: 1.2;
+  color: var(--ink);
+  text-shadow: 3px 3px 0 var(--title-warm), 6px 6px 0 var(--title-depth);
+  max-width: 22ch;
+}
+
+.section-blurb {
+  max-width: 440px;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+/* ── Quest log: project signposts ───────────────────────────── */
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.quest {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 28px 28px;
+  background: var(--snow);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel);
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
+}
+
+.quest::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--orange), var(--gold), var(--orange), transparent);
+  transition: width 0.25s steps(6);
+}
+
+.quest:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 0 var(--ink);
+}
+
+.quest:hover::after { width: 60%; }
+
+.quest:nth-child(odd)  { background: var(--paper); }
+.quest:nth-child(even) { background: var(--snow); }
+
+:root[data-theme="dark"] .quest:nth-child(odd)  { background: var(--paper); }
+:root[data-theme="dark"] .quest:nth-child(even) { background: var(--snow); }
+
+/* pixel chest icon — built from the user's palette */
+.quest-chest {
+  width: 80px; height: 80px;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  image-rendering: pixelated;
+}
+
+.quest-chest svg { width: 100%; height: 100%; }
+
+.quest:hover .quest-chest { animation: chest-shake 0.4s steps(5); }
+
+.quest-body {
+  min-width: 0;
+}
+
+.quest-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.quest-name {
+  font-family: var(--display);
+  font-size: 18px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+.quest-level {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  padding: 0 8px;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.quest-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+}
+
+.quest-status::before {
+  content: "";
+  width: 10px; height: 10px;
+  background: var(--grass);
+  border: 2px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.quest-status[data-state="wip"]::before      { background: var(--orange); }
+.quest-status[data-state="archived"]::before { background: var(--ink-soft); }
+
+.quest-tagline {
+  font-family: var(--body);
+  font-size: 15.5px;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 56ch;
+}
+
+.quest-tagline b { font-weight: 700; }
+
+.quest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.quest-tag {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  background: var(--snow);
+  border: 2px solid var(--ink);
+  padding: 1px 9px;
+  line-height: 1.3;
+}
+
+.quest:nth-child(odd) .quest-tag { background: var(--paper); }
+.quest:nth-child(even) .quest-tag { background: var(--snow); }
+
+.quest-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quest-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-family: var(--display);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink);
+  background: var(--snow);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-pixel-sm);
+  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2), background 0.08s steps(2);
+}
+
+.quest-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  background: var(--orange);
+}
+
+.quest-link svg { flex-shrink: 0; }
+
+/* ── Achievements (principles) ──────────────────────────────── */
+
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.ach {
+  position: relative;
+  padding: 22px 18px 20px;
+  background: var(--snow);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel-sm);
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), background 0.1s steps(2);
+}
+
+.ach:hover {
+  transform: translate(-2px, -2px);
+  background: var(--paper);
+  box-shadow: 4px 4px 0 0 var(--ink);
+}
+
+.ach-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 14px;
+  background: var(--gold);
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  box-shadow: var(--shadow-pixel-sm);
+  transition: transform 0.1s steps(2);
+}
+
+.ach:hover .ach-icon {
+  animation: ach-wobble 0.6s steps(8) 1;
+}
+
+.ach-icon svg { width: 22px; height: 22px; }
+
+.ach-title {
+  font-family: var(--display);
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.ach-desc {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.ach-id {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--snow);
+  border: 2px solid var(--ink);
+  padding: 0 6px;
+  line-height: 1.2;
+}
+
+/* color rotation for icons — sweeps the palette */
+/* 6 distinct icon backgrounds — kept cool / neutral so the row reads as
+   a calm grid instead of a candy assortment. Red shows up once on the
+   "Privacy by default" key icon for emphasis. */
+.ach:nth-child(1) .ach-icon { background: var(--sky-light);    color: var(--sky-ink); }
+.ach:nth-child(2) .ach-icon { background: var(--gray-100);     color: var(--ink); }
+.ach:nth-child(3) .ach-icon { background: var(--red-light);    color: var(--red-shadow); }
+.ach:nth-child(4) .ach-icon { background: var(--gray-200);     color: var(--ink); }
+.ach:nth-child(5) .ach-icon { background: var(--grass-light);  color: var(--grass-shadow); }
+.ach:nth-child(6) .ach-icon { background: var(--cloud);        color: var(--sky-deep); }
+
+/* Dark-mode achievement icons need bg colors LIGHTER than the dark
+   section bg or the icon disappears. Hardcoded bright equivalents. */
+:root[data-theme="dark"] .ach:nth-child(1) .ach-icon { background: #4FA0E8; color: #051933; }
+:root[data-theme="dark"] .ach:nth-child(2) .ach-icon { background: var(--paper-edge); color: var(--ink); }
+:root[data-theme="dark"] .ach:nth-child(4) .ach-icon { background: var(--gray-300); color: var(--floor); }
+:root[data-theme="dark"] .ach:nth-child(5) .ach-icon { color: var(--snow); }
+:root[data-theme="dark"] .ach:nth-child(6) .ach-icon { background: var(--ink); color: var(--sky-deep); }
+
+/* ── Contact: quest dialog ──────────────────────────────────── */
+
+.dialog {
+  position: relative;
+  background: var(--snow);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel-lg);
+  padding: 32px 32px 28px;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* dialog "speaker" portrait */
+.dialog-portrait {
+  width: 80px; height: 80px;
+  border: 3px solid var(--ink);
+  background: var(--sky-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.dialog-body { min-width: 0; }
+
+.dialog-name {
+  font-family: var(--display);
+  font-size: 11px;
+  background: var(--ink);
+  color: var(--snow);
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  border: 2px solid var(--ink);
+}
+
+:root[data-theme="dark"] .dialog-name {
+  background: var(--orange);
+  color: var(--ink);
+  border-color: var(--snow);
+}
+
+.dialog-text {
+  font-family: var(--body);
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.dialog-text .blink::after {
+  content: "▸";
+  margin-left: 6px;
+  color: var(--orange);
+  animation: star-blink 0.9s steps(2) infinite;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+.footer {
+  position: relative;
+  background: var(--floor);
+  color: #FAFCFF;
+  padding: 36px 24px calc(36px + env(safe-area-inset-bottom));
+  border-top: 3px solid var(--floor);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-brand {
+  font-family: var(--display);
+  font-size: 11px;
+  /* soft light-cloud text on the dark footer — keeps brand calm.
+     The heart pulls the red accent for the single warm pop. */
+  color: #C8D4F2;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand .heart {
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 18px;
+  animation: idle-bounce 1.6s steps(2) infinite;
+  display: inline-block;
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: center;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: #FAFCFF;
+  background: transparent;
+  border: 3px solid #FAFCFF;
+  transition: transform 0.08s steps(2), background 0.08s steps(2), color 0.08s steps(2);
+}
+
+.footer-social a:hover {
+  transform: translate(-2px, -2px);
+  background: var(--red);
+  color: var(--snow);
+  border-color: var(--red);
+}
+
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 16px;
+  color: #C7E3FB;
+  letter-spacing: 0.6px;
+  text-align: right;
+}
+
+.footer-meta a { color: var(--red-light); }
+.footer-meta a:hover { color: var(--red-glow); }
+
+/* ── Reveal-on-scroll (chunky pixel pop) ────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s steps(6), transform 0.4s steps(6);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Error page ─────────────────────────────────────────────── */
+
+.errpage {
+  position: relative;
+  min-height: calc(100dvh - var(--ground-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(110px + env(safe-area-inset-top)) 24px 60px;
+  overflow: hidden;
+  background-color: var(--sky);
+  background-image: linear-gradient(180deg,
+    var(--sky-light) 0%,
+    var(--sky)       60%,
+    var(--sky-deep)  100%);
+}
+
+.errpage-card {
+  position: relative;
+  z-index: 3;     /* above the atmospheric layer */
+  max-width: 540px;
+  width: 100%;
+  background: var(--snow);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel-lg);
+  padding: 36px 32px 30px;
+  text-align: center;
+}
+
+.errpage-pill {
+  font-family: var(--display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  background: var(--orange);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  padding: 6px 12px;
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.errpage-code {
+  font-family: var(--display);
+  font-size: clamp(48px, 12vw, 96px);
+  line-height: 1;
+  color: var(--ink);
+  text-shadow:
+    5px 5px 0 var(--title-warm),
+    10px 10px 0 var(--title-depth);
+  margin-bottom: 16px;
+}
+
+.errpage-msg {
+  font-family: var(--body);
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* ── Large tablet / small laptop (≤ 1024px) ─────────────────── */
+
+@media (max-width: 1024px) {
+  .nav-inner { padding: 0 14px; }
+  .section   { padding: 64px 22px; }
+  .hero      { padding: calc(180px + env(safe-area-inset-top)) 22px 170px; }
+  .quest     { padding: 26px 24px; }
+}
+
+/* ── Tablet portrait (≤ 900px) ──────────────────────────────── */
+
+@media (max-width: 900px) {
+  .ach-grid { grid-template-columns: repeat(2, 1fr); }
+  .quest { grid-template-columns: 64px 1fr; gap: 18px; padding: 22px 22px; }
+  .quest-chest { width: 60px; height: 60px; }
+  .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 18px; }
+  .footer-brand { justify-self: center; }
+  .footer-meta { text-align: center; }
+  .footer-social { justify-self: center; }
+}
+
+/* ── Mobile (≤ 640px) ───────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .nav { top: 8px; inset-inline: 8px; }
+  .nav-inner { padding: 0 12px; height: 50px; gap: 10px; }
+  .nav-link { font-size: 8px; padding: 6px 8px; min-height: 32px; }
+  .nav-link.is-cta { padding: 6px 10px; }
+  .nav-brand { font-size: 10px; gap: 8px; }
+  .nav-avatar { width: 28px; height: 28px; }
+
+  /* phone: tight, small, no decorative halo / rays so the celestial
+     body's footprint matches its visible disc — nothing extends down
+     into the tagline area. */
+  .sun, .moon {
+    top: calc(60px + env(safe-area-inset-top));
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    box-shadow:
+      inset -3px -3px 0 0 rgba(0,0,0,0.10),
+      inset  3px  3px 0 0 rgba(255,255,255,0.30);
+  }
+  /* rays + outer glow off on mobile — they were what bled into the banner */
+  .sun::before { display: none; }
+
+  .hero { padding: calc(175px + env(safe-area-inset-top)) 16px 140px; }
+  .hero-scene { height: 140px; }
+  .hero-title { text-shadow: 3px 3px 0 var(--title-warm), 6px 6px 0 var(--title-edge); }
+  .hero-sub { font-size: 15px; max-width: 460px; }
+  .hero-penguin { width: 90px; height: 90px; }
+
+  .section { padding: 56px 16px; }
+  .section-title { font-size: clamp(18px, 5vw, 24px); }
+  .quest { grid-template-columns: 1fr; gap: 14px; padding: 22px 20px; }
+  .quest-chest { width: 56px; height: 56px; align-self: flex-start; }
+  .ach-grid { grid-template-columns: 1fr; }
+
+  .dialog { grid-template-columns: 1fr; padding: 24px 22px; gap: 18px; }
+  .dialog-portrait { width: 64px; height: 64px; }
+  .dialog-text { font-size: 15px; }
+
+  :root { --ground-h: 64px; }
+}
+
+/* ── Small mobile (≤ 480px) ─────────────────────────────────── */
+
+@media (max-width: 480px) {
+  /* drop the secondary "Style" link; keep Quests + Talk + theme toggle
+     so primary discovery is still one tap away */
+  .nav-link--alt { display: none; }
+  .nav-inner { gap: 8px; }
+}
+
+/* ── Tiny mobile (≤ 360px) ──────────────────────────────────── */
+
+@media (max-width: 360px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .pix-btn { justify-content: center; }
+  .footer-social { flex-wrap: wrap; }
+  .nav-brand { font-size: 9px; }
+  /* keep tap target ≥ 32px tall even at smallest viewport */
+  .nav-link.is-cta { font-size: 8px; padding: 8px 10px; min-height: 32px; }
+  .nav-link        { font-size: 8px; padding: 8px 10px; min-height: 32px; }
+}
+
+/* ── Landscape phone (short viewport) ───────────────────────── */
+
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: auto; padding-top: calc(72px + env(safe-area-inset-top)); padding-bottom: 24px; }
+  .hero-stage { padding-bottom: 24px; }
+  .hero-scene { display: none; }
+  .hero-title { font-size: clamp(28px, 5vw, 40px); }
+  .hero-sub { margin-top: 16px; font-size: 14px; }
+  .hero-actions { margin-top: 20px; }
+}
+
+/* ── Ultra-wide (≥ 1600px) ──────────────────────────────────── */
+
+@media (min-width: 1600px) {
+  :root { --max-w: 1240px; }
+}
+
+/* ── Theme toggle (sun ↔ moon) ──────────────────────────────── */
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.08s steps(2), background 0.08s steps(2), box-shadow 0.08s steps(2);
+}
+
+.theme-toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  background: var(--snow);
+  color: var(--ink);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.theme-toggle .icon-sun  { display: block; }
+.theme-toggle .icon-moon { display: none;  }
+
+:root[data-theme="dark"] .theme-toggle .icon-sun  { display: none;  }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+/* ── Stars (only in dark mode) ──────────────────────────────── */
+
+:root[data-theme="dark"] .starfield {
+  height: 80vh;
+  opacity: 0.85;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%,  #FFFFFF, transparent),
+    radial-gradient(1px 1px   at 18% 28%,   #FFFFFF, transparent),
+    radial-gradient(2px 2px   at 32% 8%,    #FFE9A8, transparent),
+    radial-gradient(1px 1px   at 46% 22%,   #FFFFFF, transparent),
+    radial-gradient(1.5px 1.5px at 58% 14%, #FFFFFF, transparent),
+    radial-gradient(1px 1px   at 67% 32%,   #C8E0FF, transparent),
+    radial-gradient(2px 2px   at 78% 6%,    #FFFFFF, transparent),
+    radial-gradient(1px 1px   at 88% 26%,   #FFE9A8, transparent),
+    radial-gradient(1.5px 1.5px at 95% 18%, #FFFFFF, transparent),
+    radial-gradient(1px 1px   at 12% 40%,   #FFFFFF, transparent),
+    radial-gradient(1px 1px   at 38% 48%,   #C8E0FF, transparent),
+    radial-gradient(1.5px 1.5px at 72% 44%, #FFFFFF, transparent);
+}
+
+/* sun (visible in day) — pixel disc + radiating rays */
+.sun {
+  /* button reset — kill browser defaults so .sun can be the visual disc */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+
+  position: absolute;
+  top: calc(90px + env(safe-area-inset-top));
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  background: #FFD24A;
+  border-radius: 50%;
+  box-shadow:
+    inset -6px -6px 0 0 rgba(0,0,0,0.08),
+    inset  4px  4px 0 0 rgba(255,255,255,0.35),
+    0 0 0 4px rgba(255,213,84,0.18),
+    0 0 0 14px rgba(255,213,84,0.08);
+  /* sits above hero-stage (z 3) so the corner is hit-testable */
+  z-index: 4;
+  animation: sun-pulse 6s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.sun:hover,
+.sun:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 18px;   /* push outline past the glow rings */
+}
+
+/* radial rays around the sun (pure CSS, no SVG) */
+.sun::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background:
+    /* 8 rays via conic-gradient: alternating gold + transparent */
+    conic-gradient(
+      from 0deg,
+      rgba(255,213,84,0.45) 0deg 12deg, transparent 12deg 45deg,
+      rgba(255,213,84,0.45) 45deg 57deg, transparent 57deg 90deg,
+      rgba(255,213,84,0.45) 90deg 102deg, transparent 102deg 135deg,
+      rgba(255,213,84,0.45) 135deg 147deg, transparent 147deg 180deg,
+      rgba(255,213,84,0.45) 180deg 192deg, transparent 192deg 225deg,
+      rgba(255,213,84,0.45) 225deg 237deg, transparent 237deg 270deg,
+      rgba(255,213,84,0.45) 270deg 282deg, transparent 282deg 315deg,
+      rgba(255,213,84,0.45) 315deg 327deg, transparent 327deg 360deg
+    );
+  /* center cut-out so the rays form a ring, not a disc */
+  mask: radial-gradient(circle, transparent 30px, #000 32px);
+  -webkit-mask: radial-gradient(circle, transparent 30px, #000 32px);
+  animation: sun-rays 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* day mode = sun visible, moon hidden */
+:root[data-theme="dark"] .sun { display: none; }
+
+/* moon (visible in dark) */
+.moon {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+
+  position: absolute;
+  top: calc(90px + env(safe-area-inset-top));
+  right: 24px;
+  /* same size as the sun so the toggle's footprint stays identical
+     between day and night — was 56 × 56 (4 px larger than sun) */
+  width: 52px;
+  height: 52px;
+  background: #FFE9A8;
+  border-radius: 50%;
+  box-shadow:
+    -8px 0 0 -2px var(--sky-light) inset,
+    0 0 0 4px rgba(255,233,168,0.18),
+    0 0 0 14px rgba(255,233,168,0.08);
+  z-index: 4;
+  cursor: pointer;
+  display: none;
+  animation: idle-bounce 6s steps(2) infinite;
+  /* MUST be `auto` — leftover `none` from the old decorative-div version
+     made the moon visually visible but unclickable, so the toggle worked
+     once (sun→dark) and then jammed (moon had no hit-testing). */
+  pointer-events: auto;
+}
+
+:root[data-theme="dark"] .moon { display: block; }
+
+.moon:hover,
+.moon:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 18px;
+}
+:root[data-theme="dark"] .sky-layer::before,
+:root[data-theme="dark"] .sky-layer::after,
+:root[data-theme="dark"] .cloud {
+  filter: brightness(0.55) drop-shadow(2px 2px 0 var(--cloud-shade));
+}
+
+:root[data-theme="dark"] .bird::before {
+  background:
+    linear-gradient(135deg, transparent 50%, #6E72A8 50%) 0 0 / 7px 8px no-repeat,
+    linear-gradient(225deg, transparent 50%, #6E72A8 50%) 7px 0 / 7px 8px no-repeat;
+}
+
+/* hero penguin gets a moonlit halo in dark mode */
+:root[data-theme="dark"] .hero-penguin {
+  filter:
+    drop-shadow(4px 6px 0 rgba(0,0,0,0.45))
+    drop-shadow(0 0 12px rgba(255,233,168,0.35));
+}
+
+/* nav avatar contrast in dark */
+:root[data-theme="dark"] .nav-avatar {
+  background: #2C3856;
+}
+
+/* ── Page-wide theme transition ─────────────────────────────── */
+
+body, .nav, .section, .footer, .quest, .ach, .dialog, .errpage-card,
+.pix-btn, .quest-link, .nav-link, .nav-link.is-cta {
+  transition: var(--theme-tx);
+}
+
+/* ── Sparkles on chest hover ────────────────────────────────── */
+
+.quest-chest::before,
+.quest-chest::after {
+  content: "✦";
+  position: absolute;
+  font-family: var(--mono);
+  color: var(--gold);
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 2px 2px 0 var(--ink);
+}
+
+.quest-chest::before { top: -8px;  left: -8px; font-size: 18px; }
+.quest-chest::after  { top: 8px;   right: -8px; font-size: 14px; }
+
+@keyframes sparkle-pop {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  30%      { opacity: 1; transform: scale(1.1); }
+  60%      { opacity: 0.8; transform: scale(1); }
+}
+
+.quest:hover .quest-chest::before {
+  animation: sparkle-pop 1.2s steps(4) 0s infinite;
+}
+
+.quest:hover .quest-chest::after {
+  animation: sparkle-pop 1.2s steps(4) 0.4s infinite;
+}
+
+/* ── Dialog typewriter cursor ───────────────────────────────── */
+
+.dialog-text.is-typing::after {
+  content: "▋";
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--orange);
+  animation: caret-tw 0.6s steps(2) infinite;
+}
+
+@keyframes caret-tw {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* hide the static blink while typing */
+.dialog-text.is-typing .blink::after { display: none; }
+
+/* ── Penguin click → jump ───────────────────────────────────── */
+
+@keyframes penguin-jump {
+  0%   { transform: translateY(0)    rotate(0deg); }
+  20%  { transform: translateY(-22px) rotate(-4deg); }
+  40%  { transform: translateY(-32px) rotate(2deg); }
+  60%  { transform: translateY(-22px) rotate(-2deg); }
+  80%  { transform: translateY(-6px)  rotate(0deg); }
+  100% { transform: translateY(0); }
+}
+
+.hero-penguin.jump {
+  animation: penguin-jump 0.7s steps(7) 1;
+}
+
+.hero-penguin {
+  cursor: pointer;
+}
+
+/* ── Cloud parallax (JS sets --mx, --my) ────────────────────── */
+
+.cloud, .sky-layer::before, .sky-layer::after {
+  --mx: 0;
+  --my: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cloud {
+    transition: translate 0.25s ease-out;
+    translate: calc(var(--mx) * 1px) calc(var(--my) * 1px);
+  }
+}
+
+/* ── Live version pill (loading state) ──────────────────────── */
+
+.quest-level[data-loading] {
+  opacity: 0.55;
+  animation: caret-tw 1.4s steps(2) infinite;
+}
+
+/* ── Penguin counter sticker (easter egg readout) ───────────── */
+
+.jump-counter {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 50;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-family: var(--display);
+  font-size: 9px;
+  letter-spacing: 0.6px;
+  background: var(--orange);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-pixel-sm);
+  pointer-events: none;
+  animation: pop-in 0.4s steps(4);
+}
+
+.jump-counter.is-visible { display: inline-flex; }
+
+/* ── Reduce motion ──────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+  .sky-layer::before, .sky-layer::after, .cloud, .bird, .moon, .sun { display: none; }
+  .sun::before, .ground::before { animation: none; }
+  .quest-chest::before, .quest-chest::after { display: none; }
+}

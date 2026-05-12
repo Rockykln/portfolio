@@ -1,0 +1,20 @@
+# Cloudflare / Wrangler — deploy config + local cache, never committed
+wrangler.jsonc
+wrangler.toml
+.wrangler/
+.dev.vars
+.assetsignore
+_headers
+_redirects
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Local notes
+notes.local.md
+*.local.md

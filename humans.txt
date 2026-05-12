@@ -1,0 +1,38 @@
+/* TEAM */
+  Engineer: rockykln
+  Contact:  contact [at] rockykln.com
+  GitHub:   https://github.com/Rockykln
+  Discord:  https://discord.com/users/722068753617125466
+  Location: Germany
+
+/* SITE */
+  Last updated: 2026-05-12
+  Source:       vanilla HTML/CSS/JS, no build step
+  Hosting:      Edge CDN
+  Standards:    HTML5, CSS3, ES2020, WCAG 2.2 AA, GDPR
+  Components:   penguin (mascot), pixel chests (projects),
+                achievement badges (principles), JRPG dialog (contact)
+
+/* PROJECTS */
+  key64     — https://www.key64.com
+  clientctl — https://github.com/Rockykln/clientctl
+  refrain   — https://github.com/Rockykln/refrain  ·  https://pypi.org/project/refrain/
+
+/* THANKS */
+  Inter alia — Press Start 2P, Outfit, VT323
+  (Google Fonts), and every can of Red Bull that made this possible.
+
+                  ___
+                 (    )
+                  )(_)
+                 (    )                 ___
+                ( _____ )             (     )
+                                      ( ___ )
+        _____________________________
+       /                             /|
+      /          rockykln           / |
+     /_____________________________/  |
+     |                             |  |
+     |  >  Have fun and be yourself.|  |
+     |                             | /
+     |_____________________________|/

@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- ── Basics ──────────────────────────────────────────────── -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- ── Title + description ─────────────────────────────────── -->
+  <title>rockykln · Have fun and be yourself</title>
+  <meta name="description" content="Pixel-art portfolio of rockykln — Linux engineer from Germany. Three projects: key64 (self-hosted platform on Cloudflare), clientctl (web control panel for KDE Plasma 6 / Wayland), refrain (Discord Rich Presence for Apple Music on Linux).">
+  <meta name="keywords" content="rockykln, linux engineer, kde plasma 6, wayland, cloudflare workers, fastapi, python, discord rpc, apple music linux, mpris, bluez, pixel art portfolio, self-hosted">
+  <meta name="author" content="rockykln">
+  <link rel="canonical" href="https://rockykln.de/">
+  <link rel="alternate" hreflang="en" href="https://rockykln.de/">
+  <link rel="alternate" hreflang="x-default" href="https://rockykln.de/">
+
+  <!-- ── Robots ──────────────────────────────────────────────── -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+
+  <!-- ── Theme ───────────────────────────────────────────────── -->
+  <meta name="theme-color" content="#1597F9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1E4A" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- ── Apple ───────────────────────────────────────────────── -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="rockykln">
+  <meta name="application-name" content="rockykln">
+
+  <!-- ── Microsoft tile ──────────────────────────────────────── -->
+  <meta name="msapplication-TileColor" content="#1597F9">
+  <meta name="msapplication-config" content="none">
+
+  <!-- ── Icons ───────────────────────────────────────────────── -->
+  <link rel="icon"             href="/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon"             href="/icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon"        href="/icons/favicon.svg" color="#1597F9">
+  <link rel="manifest"         href="/manifest.json">
+
+  <!-- ── Open Graph ──────────────────────────────────────────── -->
+  <meta property="og:type"             content="website">
+  <meta property="og:site_name"        content="rockykln">
+  <meta property="og:title"            content="rockykln · Have fun and be yourself">
+  <meta property="og:description"      content="Linux engineer building small, calm tools. Three quests: key64 (self-hosted platform on Cloudflare), clientctl (web control panel for KDE Plasma 6), refrain (Discord Rich Presence for Apple Music on Linux).">
+  <meta property="og:url"              content="https://rockykln.de/">
+  <meta property="og:locale"           content="en_US">
+  <meta property="og:image"            content="https://rockykln.de/icons/banner-og.jpg">
+  <meta property="og:image:secure_url" content="https://rockykln.de/icons/banner-og.jpg">
+  <meta property="og:image:type"       content="image/jpeg">
+  <meta property="og:image:width"      content="1200">
+  <meta property="og:image:height"     content="630">
+  <meta property="og:image:alt"        content="Pixel-art landscape: penguin standing on grass under a blue sky with drifting clouds.">
+  <meta property="og:updated_time"     content="2026-05-12T00:00:00Z">
+
+  <!-- ── Twitter ─────────────────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="rockykln · Have fun and be yourself">
+  <meta name="twitter:description" content="Linux engineer building small, calm tools. Three quests: key64, clientctl, refrain.">
+  <meta name="twitter:image"       content="https://rockykln.de/icons/banner-og.jpg">
+  <meta name="twitter:image:alt"   content="Pixel-art landscape with the rockykln penguin standing on grass.">
+
+  <!-- ── Network hints ───────────────────────────────────────── -->
+  <link rel="preconnect"   href="https://fonts.googleapis.com">
+  <link rel="preconnect"   href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://api.github.com">
+
+  <!-- ── Critical assets (preload) ───────────────────────────── -->
+  <link rel="preload" as="image" href="/icons/penguin.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="style" href="/css/style.css?v=1">
+
+  <!-- ── Stylesheets ─────────────────────────────────────────── -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Outfit:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css?v=1">
+
+  <!-- ── Discoverability ─────────────────────────────────────── -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap">
+  <link rel="author" href="/humans.txt">
+
+  <!-- ── JSON-LD: WebSite + Person + ItemList ────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://rockykln.de/#website",
+    "url": "https://rockykln.de/",
+    "name": "rockykln",
+    "description": "Pixel-art portfolio of rockykln — Linux engineer from Germany.",
+    "inLanguage": "en",
+    "publisher": { "@id": "https://rockykln.de/#person" },
+    "copyrightHolder": { "@id": "https://rockykln.de/#person" },
+    "copyrightYear": 2026
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://rockykln.de/#person",
+    "name": "rockykln",
+    "alternateName": "Rockykln",
+    "url": "https://rockykln.de",
+    "image": "https://rockykln.de/icons/icon-512.png",
+    "description": "Linux engineer building small, calm tools — self-hosted platforms, desktop utilities, and the infrastructure behind them.",
+    "jobTitle": "Linux Engineer",
+    "knowsAbout": [
+      "Linux",
+      "KDE Plasma 6",
+      "Wayland",
+      "Cloudflare Workers",
+      "Python",
+      "FastAPI",
+      "Self-hosted infrastructure",
+      "Discord Rich Presence",
+      "MPRIS",
+      "BlueZ"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "DE"
+    },
+    "email": "mailto:contact@rockykln.com",
+    "sameAs": [
+      "https://github.com/Rockykln",
+      "https://discord.com/users/722068753617125466",
+      "https://www.key64.com"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "rockykln · projects",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "WebSite",
+          "name": "key64",
+          "url": "https://www.key64.com",
+          "description": "Self-hosted platform — landing page, CDN, status, Discord ecosystem. Static HTML on Cloudflare Workers."
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "SoftwareApplication",
+          "name": "clientctl",
+          "url": "https://github.com/Rockykln/clientctl",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Linux (KDE Plasma 6 / Wayland)",
+          "description": "Web-based control panel for a Linux desktop. Apps, audio, displays, sysinfo — from any browser."
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "SoftwareApplication",
+          "name": "refrain",
+          "url": "https://github.com/Rockykln/refrain",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Linux",
+          "description": "Discord Rich Presence for Apple Music on Linux. Reads MPRIS + BlueZ AVRCP, forwards to Discord."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/" aria-label="Home">
+        <img class="nav-avatar" src="/icons/penguin.webp" alt="" width="32" height="32" loading="eager" decoding="async">
+        rockykln
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#quests">Quests</a>
+        <a class="nav-link nav-link--alt" href="#achievements">Style</a>
+        <a class="nav-link is-cta" href="#talk">Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero scene ───────────────────────────────────────────── -->
+  <main id="main">
+  <header class="hero">
+
+    <!-- atmospheric layer — confined to hero so clouds + sun + birds
+         don't drift over the white snow sections below -->
+    <div class="sky-layer" aria-hidden="true"></div>
+    <div class="starfield" aria-hidden="true"></div>
+    <button class="sun"  id="theme-toggle-sun"  type="button"
+            aria-label="Switch to dark mode" title="Switch to dark mode"></button>
+    <button class="moon" id="theme-toggle-moon" type="button"
+            aria-label="Switch to light mode" title="Switch to light mode"></button>
+    <div class="cloud c1"  aria-hidden="true"></div>
+    <div class="cloud c2"  aria-hidden="true"></div>
+    <div class="cloud c3"  aria-hidden="true"></div>
+    <div class="cloud c4"  aria-hidden="true"></div>
+    <div class="bird b1"   aria-hidden="true"></div>
+    <div class="bird b2"   aria-hidden="true"></div>
+
+    <div class="hero-stage">
+
+      <span class="hero-tagline">★ have fun and be yourself ★</span>
+
+      <h1 class="hero-title">
+        rocky<span class="accent">kln</span>
+      </h1>
+
+      <p class="hero-sub">
+        Hello! I'm a Linux engineer who builds <b>small, calm tools</b> —
+        a self-hosted platform, a desktop control panel, a tiny music helper.
+        Pull up a chair on the grass and have a look.
+      </p>
+
+      <div class="hero-actions">
+        <a class="pix-btn" href="#quests">
+          ▶ View quests
+        </a>
+        <a class="pix-btn pix-btn--ghost" href="https://github.com/Rockykln" target="_blank" rel="noopener noreferrer me">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
+      </div>
+
+    </div>
+
+    <!-- penguin scene as direct child of .hero so absolute bottom:0
+         lands at the hero's bottom (= just above the ground strip)
+         regardless of where hero-stage sits inside the flex layout -->
+    <div class="hero-scene">
+      <img class="hero-penguin" id="penguin" src="/icons/penguin.webp" alt="" width="112" height="112" loading="eager" decoding="async" role="button" tabindex="0" aria-label="Pat the penguin">
+    </div>
+
+  </header>
+
+  <div class="ground" aria-hidden="true"></div>
+
+  <!-- ── Quest log: projects ──────────────────────────────────── -->
+  <section class="section" id="quests" aria-labelledby="quests-title">
+    <div class="section-inner">
+
+      <div class="section-head reveal">
+        <div>
+          <span class="section-label">▣ Quest log</span>
+          <h2 class="section-title" id="quests-title">Three quests,<br>all alive.</h2>
+        </div>
+        <p class="section-blurb">
+          Real projects I keep tending. Open source, public-facing, built one
+          pixel at a time. Loot a chest to learn more.
+        </p>
+      </div>
+
+      <div class="quest-grid">
+
+        <!-- key64 — gold chest -->
+        <article class="quest reveal">
+          <div class="quest-chest" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+              <!-- chest body -->
+              <rect x="1" y="6"  width="14" height="9" fill="#C1925A"/>
+              <rect x="1" y="6"  width="14" height="2" fill="#DAB084"/>
+              <rect x="1" y="13" width="14" height="2" fill="#855332"/>
+              <!-- bands -->
+              <rect x="1" y="9"  width="14" height="1" fill="#855332"/>
+              <rect x="7" y="6"  width="2"  height="9" fill="#855332"/>
+              <!-- lid -->
+              <rect x="1" y="3"  width="14" height="3" fill="#C1925A"/>
+              <rect x="1" y="3"  width="14" height="1" fill="#DAB084"/>
+              <rect x="0" y="3"  width="1"  height="3" fill="#161A28"/>
+              <rect x="15" y="3" width="1"  height="3" fill="#161A28"/>
+              <rect x="0" y="6"  width="1" height="9" fill="#161A28"/>
+              <rect x="15" y="6" width="1" height="9" fill="#161A28"/>
+              <rect x="0" y="15" width="16" height="1" fill="#161A28"/>
+              <rect x="0" y="2"  width="16" height="1" fill="#161A28"/>
+              <!-- gold lock + coin sparkle -->
+              <rect x="7" y="9"  width="2"  height="2" fill="#FF6E80"/>
+              <rect x="6" y="2"  width="4"  height="1" fill="#FF6E80"/>
+              <rect x="5" y="1"  width="6"  height="1" fill="#FFD8DC"/>
+              <rect x="4" y="0"  width="2"  height="1" fill="#FFD8DC"/>
+              <rect x="10" y="0" width="2"  height="1" fill="#FFD8DC"/>
+            </svg>
+          </div>
+          <div class="quest-body">
+            <div class="quest-head">
+              <div class="quest-name">key64</div>
+              <span class="quest-level">LV ∞</span>
+              <span class="quest-status" data-state="active">live</span>
+            </div>
+            <p class="quest-tagline">
+              The platform behind <b>key64.com</b> — landing page, CDN, status,
+              Discord ecosystem. Static HTML on Cloudflare Workers, hashed assets,
+              fifteen-language i18n, public changelog and incident strip.
+            </p>
+            <div class="quest-tags">
+              <span class="quest-tag">cloudflare</span>
+              <span class="quest-tag">workers</span>
+              <span class="quest-tag">vanilla js</span>
+              <span class="quest-tag">i18n</span>
+            </div>
+            <div class="quest-actions">
+              <a class="quest-link" href="https://www.key64.com" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                Visit
+              </a>
+              <a class="quest-link" href="https://github.com/Rockykln" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+                Source
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- clientctl — sky chest (control monitor) -->
+        <article class="quest reveal">
+          <div class="quest-chest" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+              <!-- monitor frame -->
+              <rect x="1" y="2"  width="14" height="9" fill="#161A28"/>
+              <rect x="2" y="3"  width="12" height="7" fill="#1597F9"/>
+              <!-- screen content (window) -->
+              <rect x="3" y="4"  width="10" height="1" fill="#FFFFFF"/>
+              <rect x="3" y="5"  width="10" height="5" fill="#28A1FC"/>
+              <!-- traffic lights -->
+              <rect x="3" y="4"  width="1"  height="1" fill="#E63946"/>
+              <rect x="5" y="4"  width="1"  height="1" fill="#FF6E80"/>
+              <rect x="7" y="4"  width="1"  height="1" fill="#8FCB44"/>
+              <!-- bars (cpu) -->
+              <rect x="4" y="7"  width="1"  height="2" fill="#FFFFFF"/>
+              <rect x="6" y="6"  width="1"  height="3" fill="#FFFFFF"/>
+              <rect x="8" y="8"  width="1"  height="1" fill="#FFFFFF"/>
+              <rect x="10" y="6" width="1"  height="3" fill="#FF6E80"/>
+              <!-- stand + base -->
+              <rect x="6" y="11" width="4"  height="1" fill="#161A28"/>
+              <rect x="4" y="12" width="8"  height="2" fill="#855332"/>
+              <rect x="3" y="14" width="10" height="1" fill="#161A28"/>
+            </svg>
+          </div>
+          <div class="quest-body">
+            <div class="quest-head">
+              <div class="quest-name">clientctl</div>
+              <span class="quest-level" data-repo="Rockykln/clientctl" data-loading>LV …</span>
+              <span class="quest-status" data-state="wip">in dev</span>
+            </div>
+            <p class="quest-tagline">
+              A web-based control panel for a Linux desktop. Drive your daily-driver
+              from any browser — apps, audio, lock screen, live CPU/RAM/GPU/NET.
+              Tuned for <b>KDE Plasma 6 · Wayland</b>, with capability detection so it
+              degrades gracefully on other distros.
+            </p>
+            <div class="quest-tags">
+              <span class="quest-tag">python</span>
+              <span class="quest-tag">fastapi</span>
+              <span class="quest-tag">pwa</span>
+              <span class="quest-tag">kde</span>
+              <span class="quest-tag">wayland</span>
+            </div>
+            <div class="quest-actions">
+              <a class="quest-link" href="https://github.com/Rockykln/clientctl" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+                Source
+              </a>
+              <a class="quest-link" href="https://github.com/Rockykln/clientctl/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                Read me
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- refrain — pink/orange chest with music note -->
+        <article class="quest reveal">
+          <div class="quest-chest" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+              <!-- boombox body -->
+              <rect x="1" y="4"  width="14" height="10" fill="#E63946"/>
+              <rect x="1" y="4"  width="14" height="2"  fill="#FF6E80"/>
+              <rect x="1" y="13" width="14" height="1"  fill="#B81E2C"/>
+              <!-- handle -->
+              <rect x="5" y="2"  width="6"  height="1"  fill="#161A28"/>
+              <rect x="5" y="3"  width="1"  height="1"  fill="#161A28"/>
+              <rect x="10" y="3" width="1"  height="1"  fill="#161A28"/>
+              <!-- speakers -->
+              <rect x="2" y="7"  width="4"  height="5"  fill="#161A28"/>
+              <rect x="3" y="8"  width="2"  height="3"  fill="#FF6E80"/>
+              <rect x="10" y="7" width="4"  height="5"  fill="#161A28"/>
+              <rect x="11" y="8" width="2"  height="3"  fill="#FF6E80"/>
+              <!-- screen / notes -->
+              <rect x="7" y="7"  width="2"  height="2"  fill="#161A28"/>
+              <rect x="7" y="6"  width="1"  height="1"  fill="#FFFFFF"/>
+              <rect x="8" y="5"  width="1"  height="1"  fill="#FFFFFF"/>
+              <!-- frame -->
+              <rect x="0" y="3"  width="1"  height="11" fill="#161A28"/>
+              <rect x="15" y="3" width="1"  height="11" fill="#161A28"/>
+              <rect x="0" y="14" width="16" height="1"  fill="#161A28"/>
+              <rect x="1" y="3"  width="14" height="1"  fill="#161A28"/>
+            </svg>
+          </div>
+          <div class="quest-body">
+            <div class="quest-head">
+              <div class="quest-name">refrain</div>
+              <span class="quest-level" data-repo="Rockykln/refrain" data-loading>LV …</span>
+              <span class="quest-status" data-state="active">stable</span>
+            </div>
+            <p class="quest-tagline">
+              Discord Rich Presence for <b>Apple Music on Linux</b>. Reads playback
+              from MPRIS (browser tabs) and BlueZ AVRCP (iPhone over Bluetooth),
+              forwards it to Discord. Lives in your <b>tray</b> with playback
+              controls, auto-updates, privacy mode, and 9 UI languages.
+            </p>
+            <div class="quest-tags">
+              <span class="quest-tag">python</span>
+              <span class="quest-tag">pyside6</span>
+              <span class="quest-tag">mpris</span>
+              <span class="quest-tag">bluez</span>
+              <span class="quest-tag">d-bus</span>
+            </div>
+            <div class="quest-actions">
+              <a class="quest-link" href="https://github.com/Rockykln/refrain" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+                Source
+              </a>
+              <a class="quest-link" href="https://pypi.org/project/refrain/" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="2" y="2" width="12" height="3" fill="currentColor"/>
+                  <rect x="2" y="6" width="12" height="3" fill="currentColor"/>
+                  <rect x="2" y="10" width="12" height="3" fill="currentColor"/>
+                </svg>
+                PyPI
+              </a>
+              <a class="quest-link" href="https://github.com/Rockykln/refrain/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Changelog
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Achievements: how I work ─────────────────────────────── -->
+  <section class="section section--paper" id="achievements" aria-labelledby="achievements-title">
+    <div class="section-inner">
+
+      <div class="section-head reveal">
+        <div>
+          <span class="section-label">★ Achievements</span>
+          <h2 class="section-title" id="achievements-title">How I play<br>the game.</h2>
+        </div>
+        <p class="section-blurb">
+          A small set of working principles I keep unlocking, project after project.
+          Less hype, more craft.
+        </p>
+      </div>
+
+      <div class="ach-grid">
+
+        <div class="ach reveal">
+          <div class="ach-id">01</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- gem -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="3" y="2" width="10" height="2" fill="currentColor"/>
+              <rect x="2" y="4" width="12" height="2" fill="currentColor"/>
+              <rect x="4" y="6" width="8" height="6" fill="currentColor"/>
+              <rect x="6" y="12" width="4" height="2" fill="currentColor"/>
+              <rect x="5" y="3" width="1" height="1" fill="#FFFFFF" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="ach-title">No build step</div>
+          <p class="ach-desc">Plain HTML/CSS/JS. Fewer moving parts, less to break in 2030.</p>
+        </div>
+
+        <div class="ach reveal">
+          <div class="ach-id">02</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- scroll -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="3" y="2" width="10" height="12" fill="currentColor"/>
+              <rect x="2" y="3" width="12" height="1" fill="currentColor"/>
+              <rect x="2" y="12" width="12" height="1" fill="currentColor"/>
+              <rect x="5" y="5" width="6" height="1" fill="#161A28"/>
+              <rect x="5" y="7" width="6" height="1" fill="#161A28"/>
+              <rect x="5" y="9" width="4" height="1" fill="#161A28"/>
+            </svg>
+          </div>
+          <div class="ach-title">Docs first</div>
+          <p class="ach-desc">README · CHANGELOG · ROADMAP. If a feature isn't documented, it isn't done.</p>
+        </div>
+
+        <div class="ach reveal">
+          <div class="ach-id">03</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- key -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="3" y="5" width="4" height="4" fill="currentColor"/>
+              <rect x="4" y="6" width="2" height="2" fill="#161A28"/>
+              <rect x="7" y="6" width="6" height="2" fill="currentColor"/>
+              <rect x="11" y="8" width="2" height="2" fill="currentColor"/>
+              <rect x="13" y="6" width="1" height="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="ach-title">Privacy by default</div>
+          <p class="ach-desc">No third-party scripts. Privacy is the design, not a setting.</p>
+        </div>
+
+        <div class="ach reveal">
+          <div class="ach-id">04</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- magnifier -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="3" y="3" width="6" height="1" fill="currentColor"/>
+              <rect x="3" y="9" width="6" height="1" fill="currentColor"/>
+              <rect x="2" y="4" width="1" height="5" fill="currentColor"/>
+              <rect x="9" y="4" width="1" height="5" fill="currentColor"/>
+              <rect x="4" y="4" width="4" height="5" fill="#FFFFFF" opacity="0.5"/>
+              <rect x="9" y="9" width="2" height="2" fill="currentColor"/>
+              <rect x="11" y="11" width="2" height="2" fill="currentColor"/>
+              <rect x="13" y="13" width="1" height="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="ach-title">Capability detection</div>
+          <p class="ach-desc">Check the system, don't assume it. Hide what isn't supported.</p>
+        </div>
+
+        <div class="ach reveal">
+          <div class="ach-id">05</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- cloud -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="4" y="6" width="8" height="1" fill="currentColor"/>
+              <rect x="3" y="7" width="10" height="4" fill="currentColor"/>
+              <rect x="2" y="8" width="12" height="2" fill="currentColor"/>
+              <rect x="5" y="5" width="2" height="1" fill="currentColor"/>
+              <rect x="9" y="4" width="3" height="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="ach-title">Cloudflare edge</div>
+          <p class="ach-desc">Workers + tunnels, not VPS sprawl. Predictable, cheap, fast.</p>
+        </div>
+
+        <div class="ach reveal">
+          <div class="ach-id">06</div>
+          <div class="ach-icon" aria-hidden="true">
+            <!-- leaf -->
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="9"  y="2" width="4" height="1" fill="currentColor"/>
+              <rect x="7"  y="3" width="6" height="1" fill="currentColor"/>
+              <rect x="5"  y="4" width="8" height="2" fill="currentColor"/>
+              <rect x="4"  y="6" width="9" height="2" fill="currentColor"/>
+              <rect x="3"  y="8" width="8" height="2" fill="currentColor"/>
+              <rect x="3"  y="10" width="6" height="1" fill="currentColor"/>
+              <rect x="3"  y="11" width="2" height="2" fill="currentColor"/>
+              <rect x="2"  y="13" width="2" height="1" fill="#161A28"/>
+            </svg>
+          </div>
+          <div class="ach-title">Calm motion</div>
+          <p class="ach-desc">Felt, not noticed. Reduced-motion always honored, everywhere.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Talk dialog ──────────────────────────────────────────── -->
+  <section class="section" id="talk" aria-labelledby="talk-title">
+    <div class="section-inner">
+
+      <div class="section-head section-head--tight reveal">
+        <div>
+          <span class="section-label">▶ Press start</span>
+          <h2 class="section-title" id="talk-title">Want to team up?</h2>
+        </div>
+      </div>
+
+      <div class="dialog reveal">
+        <div class="dialog-portrait">
+          <img src="/icons/penguin.webp" alt="rockykln" width="80" height="80" loading="lazy" decoding="async">
+        </div>
+        <div class="dialog-body">
+          <div class="dialog-name">rockykln</div>
+          <p class="dialog-text" id="dialog-text" data-text="Hi! Email is the best way to reach me — I read everything, I reply to most. If your idea fits one of my quests, even better.">
+            Hi! Email is the best way to reach me — I read everything,
+            I reply to most. If your idea fits one of my quests, even better.
+            <span class="blink"></span>
+          </p>
+          <div class="dialog-actions">
+            <a class="pix-btn" href="mailto:contact@rockykln.com">
+              ✉ contact@rockykln.com
+            </a>
+            <a class="pix-btn pix-btn--sky" href="https://discord.com/users/722068753617125466" target="_blank" rel="noopener noreferrer me">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              Discord
+            </a>
+            <a class="pix-btn pix-btn--ghost" href="https://www.key64.com" target="_blank" rel="noopener noreferrer">
+              ◇ key64.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">
+        <span class="heart">♥</span>
+        Made with pixels &amp; Red Bull
+      </span>
+
+      <div class="footer-social" aria-label="Social">
+        <a href="https://github.com/Rockykln" target="_blank" rel="noopener noreferrer me" aria-label="GitHub" title="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="https://discord.com/users/722068753617125466" target="_blank" rel="noopener noreferrer me" aria-label="Discord" title="Discord">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </a>
+        <a href="mailto:contact@rockykln.com" aria-label="Email" title="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </a>
+      </div>
+
+      <span class="footer-meta">
+        © <span id="year">2026</span> rockykln · vanilla on
+        <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">cloudflare</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- ── Penguin jump counter (easter egg) ────────────────────── -->
+  <div class="jump-counter" id="jump-counter" aria-live="polite">
+    ★ <span id="jump-count">1</span> hop
+  </div>
+
+  <script src="/js/main.js?v=1" defer></script>
+</body>
+</html>
