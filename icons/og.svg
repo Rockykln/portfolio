@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" shape-rendering="crispEdges" role="img" aria-label="rockykln · have fun and be yourself">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#28A1FC"/>
+      <stop offset="55%"  stop-color="#1597F9"/>
+      <stop offset="100%" stop-color="#0E84DD"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#sky)"/>
+
+  <!-- pixel clouds -->
+  <g fill="#FFFFFF">
+    <rect x="120"  y="80"  width="80"  height="20"/>
+    <rect x="100"  y="100" width="120" height="20"/>
+    <rect x="900"  y="60"  width="100" height="20"/>
+    <rect x="880"  y="80"  width="140" height="20"/>
+    <rect x="600"  y="140" width="80"  height="20"/>
+    <rect x="580"  y="160" width="120" height="20"/>
+    <rect x="200"  y="220" width="60"  height="20"/>
+    <rect x="180"  y="240" width="100" height="20"/>
+  </g>
+
+  <!-- distant tree left -->
+  <g shape-rendering="crispEdges">
+    <rect x="60" y="380" width="40" height="20"  fill="#855332"/>
+    <rect x="40" y="320" width="80" height="60"  fill="#4A9926"/>
+    <rect x="20" y="340" width="120" height="40" fill="#4A9926"/>
+    <rect x="55" y="335" width="20" height="10"  fill="#8FCB44"/>
+  </g>
+
+  <!-- distant tree right -->
+  <g shape-rendering="crispEdges">
+    <rect x="1100" y="380" width="40" height="20" fill="#855332"/>
+    <rect x="1080" y="320" width="80" height="60" fill="#4A9926"/>
+    <rect x="1060" y="340" width="120" height="40" fill="#4A9926"/>
+    <rect x="1115" y="335" width="20" height="10" fill="#8FCB44"/>
+  </g>
+
+  <!-- ground (grass + dirt, refined palette) -->
+  <rect x="0" y="400" width="1200" height="14"  fill="#B0E067"/>
+  <rect x="0" y="414" width="1200" height="14"  fill="#8FCB44"/>
+  <rect x="0" y="428" width="1200" height="12"  fill="#6FBE38"/>
+  <rect x="0" y="440" width="1200" height="14"  fill="#4A9926"/>
+  <rect x="0" y="454" width="1200" height="16"  fill="#2D6418"/>
+  <rect x="0" y="470" width="1200" height="100" fill="#C1925A"/>
+  <rect x="0" y="570" width="1200" height="60"  fill="#855332"/>
+
+  <!-- pebble texture -->
+  <g fill="#4A2D1A">
+    <rect x="80"  y="500" width="3" height="3"/>
+    <rect x="240" y="520" width="3" height="3"/>
+    <rect x="420" y="540" width="3" height="3"/>
+    <rect x="630" y="510" width="3" height="3"/>
+    <rect x="820" y="530" width="3" height="3"/>
+    <rect x="1020" y="500" width="3" height="3"/>
+  </g>
+
+  <!-- penguin (pixel art, scaled up) -->
+  <g shape-rendering="crispEdges" transform="translate(880,310) scale(8)">
+    <rect x="2" y="0" width="6" height="1" fill="#161A28"/>
+    <rect x="1" y="1" width="8" height="3" fill="#161A28"/>
+    <rect x="0" y="4" width="10" height="4" fill="#161A28"/>
+    <rect x="1" y="8" width="8" height="1" fill="#161A28"/>
+    <rect x="3" y="2" width="4" height="1" fill="#FAFCFF"/>
+    <rect x="2" y="3" width="6" height="1" fill="#FAFCFF"/>
+    <rect x="2" y="4" width="6" height="3" fill="#FAFCFF"/>
+    <rect x="3" y="7" width="4" height="1" fill="#FAFCFF"/>
+    <rect x="3" y="2" width="1" height="1" fill="#FFFFFF"/>
+    <rect x="6" y="2" width="1" height="1" fill="#FFFFFF"/>
+    <rect x="4" y="4" width="2" height="1" fill="#FF8F1C"/>
+    <rect x="2" y="9" width="2" height="1" fill="#FF8F1C"/>
+    <rect x="6" y="9" width="2" height="1" fill="#FF8F1C"/>
+  </g>
+
+  <!-- title with multi-step pixel shadow -->
+  <text x="80" y="240"
+        font-family="'Press Start 2P', monospace"
+        font-size="84" fill="#161A28">
+    rocky<tspan fill="#FF8F1C">kln</tspan>
+  </text>
+
+  <!-- gold tagline pill -->
+  <rect x="80"  y="270" width="640" height="58" fill="#FFC72C" stroke="#161A28" stroke-width="4"/>
+  <text x="100" y="310"
+        font-family="'Press Start 2P', monospace"
+        font-size="22" fill="#161A28">
+    ★ have fun and be yourself ★
+  </text>
+
+  <!-- footer label -->
+  <text x="80" y="560"
+        font-family="VT323, monospace"
+        font-size="32" fill="#FAFCFF">
+    key64 · clientctl · refrain
+  </text>
+
+  <!-- pixel border -->
+  <rect x="0" y="0" width="1200" height="6" fill="#161A28"/>
+  <rect x="0" y="624" width="1200" height="6" fill="#161A28"/>
+</svg>

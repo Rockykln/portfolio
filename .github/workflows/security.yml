@@ -1,0 +1,36 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '37 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  trufflehog:
+    name: trufflehog (secret detection)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Full git history so the action can scan every commit, not
+          # just HEAD. TruffleHog needs both refs to diff.
+          fetch-depth: 0
+
+      - name: Run TruffleHog
+        # SHA-pinned (not @main, not @v3) — TruffleHog has full access to
+        # the repo's git history while running, which is exactly the kind
+        # of third-party action GitHub recommends pinning by commit SHA.
+        # Bumped via Dependabot's github-actions ecosystem.
+        uses: trufflesecurity/trufflehog@37b77001d0174ebec2fcca2bd83ff83a6d45a3ab  # v3.95.3
+        with:
+          # --only-verified: a "secret" is only flagged when TruffleHog
+          # successfully validates it against the actual service (e.g. a
+          # GitHub token must be accepted by api.github.com). Drops the
+          # false-positive rate dramatically.
+          extra_args: --only-verified

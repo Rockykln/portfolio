@@ -1,0 +1,10 @@
+.git/
+.gitignore
+.wranglerignore
+.assetsignore
+docs/
+README.md
+CHANGELOG.md
+
+# Source assets — only the optimized variants ship.
+icons/banner.jpg

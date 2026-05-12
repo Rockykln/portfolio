@@ -1,0 +1,2 @@
+# No legacy paths yet — keep this list short.
+# 404 fallthrough is handled by wrangler "not_found_handling": "404-page".

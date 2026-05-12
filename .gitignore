@@ -1,0 +1,15 @@
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Local notes
+notes.local.md
+*.local.md

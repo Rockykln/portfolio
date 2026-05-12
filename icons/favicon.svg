@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges" role="img" aria-label="rockykln">
+  <!-- sky (refined: vivid #1597F9) -->
+  <rect width="16" height="16" fill="#1597F9"/>
+  <!-- cloud -->
+  <rect x="11" y="2" width="3" height="1" fill="#FFFFFF"/>
+  <rect x="10" y="3" width="5" height="1" fill="#FFFFFF"/>
+  <!-- penguin body -->
+  <rect x="5" y="3"  width="6" height="1" fill="#161A28"/>
+  <rect x="4" y="4"  width="8" height="3" fill="#161A28"/>
+  <rect x="3" y="7"  width="10" height="4" fill="#161A28"/>
+  <rect x="4" y="11" width="8" height="1" fill="#161A28"/>
+  <!-- belly -->
+  <rect x="6" y="5"  width="4" height="1" fill="#FAFCFF"/>
+  <rect x="5" y="6"  width="6" height="1" fill="#FAFCFF"/>
+  <rect x="5" y="7"  width="6" height="3" fill="#FAFCFF"/>
+  <rect x="6" y="10" width="4" height="1" fill="#FAFCFF"/>
+  <!-- eyes -->
+  <rect x="6" y="5"  width="1" height="1" fill="#FFFFFF"/>
+  <rect x="9" y="5"  width="1" height="1" fill="#FFFFFF"/>
+  <!-- beak + feet (penguin orange #FF8F1C) -->
+  <rect x="7" y="7"  width="2" height="1" fill="#FF8F1C"/>
+  <rect x="5" y="12" width="2" height="1" fill="#FF8F1C"/>
+  <rect x="9" y="12" width="2" height="1" fill="#FF8F1C"/>
+  <!-- grass (refined lime + mid) -->
+  <rect x="0" y="13" width="16" height="1" fill="#B0E067"/>
+  <rect x="0" y="14" width="16" height="2" fill="#8FCB44"/>
+  <!-- frame -->
+  <rect x="0" y="0"  width="16" height="1" fill="#161A28"/>
+  <rect x="0" y="15" width="16" height="1" fill="#161A28"/>
+  <rect x="0" y="0"  width="1"  height="16" fill="#161A28"/>
+  <rect x="15" y="0" width="1"  height="16" fill="#161A28"/>
+</svg>

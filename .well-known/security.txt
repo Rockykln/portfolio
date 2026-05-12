@@ -1,0 +1,6 @@
+Contact: mailto:contact@rockykln.com
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, de
+Canonical: https://rockykln.com/.well-known/security.txt
+Policy: https://github.com/Rockykln
+Acknowledgments: https://rockykln.com/#talk
