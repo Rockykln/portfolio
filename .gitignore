@@ -1,11 +1,9 @@
-# Cloudflare / Wrangler — deploy config + local cache, never committed
-wrangler.jsonc
-wrangler.toml
+# Cloudflare / Wrangler — only the local build cache + secrets file
+# stay out of the repo. The deploy config (wrangler.jsonc, _headers,
+# _redirects, .assetsignore) IS in the repo so Workers Builds can
+# auto-deploy on push.
 .wrangler/
 .dev.vars
-.assetsignore
-_headers
-_redirects
 
 # OS
 .DS_Store

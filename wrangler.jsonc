@@ -1,0 +1,19 @@
+// Cloudflare Workers Static Assets — deploy config.
+// Read by Workers Builds (Git integration) on every push to main.
+{
+  "name": "rockykln-portfolio",
+  "compatibility_date": "2026-05-07",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "404-page"
+  },
+  // Primary serving zone is rockykln.de. The .com apex + www are
+  // handled by a redirect rule elsewhere in Cloudflare, not by this
+  // worker, so we don't bind them here.
+  "routes": [
+    { "pattern": "rockykln.de/*", "zone_name": "rockykln.de" }
+  ],
+  "workers_dev": false,
+  "preview_urls": false
+}

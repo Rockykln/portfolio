@@ -1,0 +1,11 @@
+.git
+.gitignore
+.assetsignore
+.wrangler
+.github
+LICENSE
+README.md
+CHANGELOG.md
+docs
+icons/banner.jpg
+wrangler.jsonc
